@@ -1,63 +1,77 @@
-# Bus Buddy
+# 🚌 BusBuddy
 
-Bus Buddy is a SwiftUI iOS prototype for live school-bus tracking. It gives
-parents a real-time view of the bus, an ETA for their child's stop, a journey
-timeline, simulated face-verified boarding, and instant safety alerts — so they
-do not have to call the driver.
+**Every child. Every ride. Every moment.**
 
-> This is a demo/prototype. Bus movement, face verification, and driver alerts
-> are driven by an in-app simulator, not by live GPS or a backend.
+BusBuddy is an iOS app for parents that makes the school bus journey transparent and safe. It was built as a prototype for a workshop, using SwiftUI, Xcode and an AI coding agent (Google Antigravity).
+
+## The problem
+
+Every morning, parents:
+- call the bus driver about 3 times to ask where the bus is,
+- have no idea when the bus will reach their stop,
+- don't know whether their child has boarded, reached school, or been dropped home.
+
+## The solution
+
+BusBuddy gives parents live information, so they never need to call the driver.
 
 ## Features
 
-- **Live tracking map** with an animated route, a pulsing bus marker, and a
-  draggable glass bottom sheet.
-- **ETA ring** that fills as the bus approaches the child's stop.
-- **Journey timeline** with the day's checkpoints and boarding status.
-- **Simulated face scan** for boarding verification.
-- **Safety alerts** for tyre puncture, road block, and SOS, including local
-  notification banners.
-- **Demo controls** to play/pause, change simulation speed, jump to the
-  afternoon route, and reset the demo.
+- **Live bus tracking:** the bus moves on an Apple Map along its route
+- **ETA and distance:** live estimate to the child's stop, updated as the bus moves
+- **Face-verified boarding status:** the parent sees when the child boards
+- **Full-day journey timeline:**
+  1. Bus started from depot
+  2. Boarded at home
+  3. Reached school
+  4. Boarded from school
+  5. Dropped at home
+- **Instant alerts:** tyre puncture, road blocked (adds delay to the ETA) and SOS, shown in the app and as notification banners
+- **Premium UI:** splash screen, glass bottom sheet, ETA ring, smooth spring animations and haptics
+
+## Screens
+
+| Splash | Live Tracking | Journey & Alerts |
+|---|---|---|
+| ![Splash](screenshots/splash.png) | ![Track](screenshots/track.png) | ![Journey](screenshots/journey.png) |
 
 ## Tech stack
 
-- SwiftUI
+- Swift and SwiftUI
 - MapKit
-- CoreLocation
-- UserNotifications
-- iOS 17+ (uses `Tab`, `@Observable` environment objects, and modern SwiftUI
-  APIs)
+- UserNotifications (local notifications)
+- Xcode, iOS 17 or later
 
-## Project layout
+## Run it
 
-| File | Purpose |
-| --- | --- |
-| `Bus_BuddyApp.swift` | App entry point |
-| `ContentView.swift` | Splash screen, tab container, and global alert banner |
-| `SplashView.swift` | Animated launch screen |
-| `TrackView.swift` | Live map, route, bus marker, and ETA sheet |
-| `JourneyView.swift` | Journey timeline, alert controls, and alert cards |
-| `DemoControlsView.swift` | Presenter/demo controls |
-| `Models.swift` | Stops, journey steps, alerts, and child status |
-| `BusSimulator.swift` | Observable simulator that drives the demo |
-| `NotificationManager.swift` | Local notification permission and delivery |
-| `Theme.swift` | Shared colors and styling |
-| `Assets.xcassets` | App icon and accent color placeholders |
+1. Clone the repository.
+2. Open `BusBuddy.xcodeproj` in Xcode.
+3. Choose an iPhone simulator and press Run.
+4. Allow notifications when asked.
 
-## Running the app
+No GPS, internet or setup is needed. The demo runs by itself and has demo controls (play, pause, speed, face scan, reset).
 
-The repository contains the SwiftUI source and asset catalog. To run it in
-Xcode:
+## What is simulated and what is real
 
-1. Create a new **iOS App** project named **Bus Buddy** (SwiftUI, iOS 17+).
-2. Replace the generated `Bus_BuddyApp.swift` and `ContentView.swift` with the
-   files from this repository.
-3. Add the remaining `.swift` files and `Assets.xcassets` to the app target.
-4. Build and run on an iPhone simulator or device.
+| Simulated in this prototype | Planned for a real product |
+|---|---|
+| Bus GPS location and ETA | GPS tracker on the bus sending live data to a server |
+| Face scanner | Camera at the bus door matching enrolled children |
+| Driver alert buttons | A driver panel and bus sensors |
+| Local notifications | Push notifications from a backend |
 
-## Notes
+## Privacy note
 
-- Map locations use the Ahmedabad area as sample data.
-- Notifications are local notifications; no push server is required.
-- The face scan is an animation-based mock-up, not biometric authentication.
+A real deployment would handle children's face data only with parental consent, encrypted storage and compliance with India's DPDP Act. RFID cards could be offered as an alternative.
+
+## Roadmap
+
+- Real GPS hardware and a backend server
+- Face recognition at the bus door
+- Driver app and school admin dashboard
+- Push notifications
+- Lock screen Live Activity and widget
+
+## Author
+
+Built by **[Your Name]** at **[Workshop / College Name]**, 2026.
